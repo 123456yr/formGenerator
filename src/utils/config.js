@@ -26,17 +26,18 @@ export const inputComponents = [
     },
     __props__: {
       type: 'text',
-      moduleValue: '',
+      modelValue: '',
       maxLength: null,
       minLength: null,
       'show-word-limit': false,
-      placeholder: '',
+      placeholder: '单行文本',
       clearable: false,
       disabled: false,
       size: 'default',
       'perfix-icon': '',
       'suffix-icon': '',
       readonly: false,
+      onInput: (evt) => {__props__.modelValue = evt; console.log(evt, 'evt')}
     }
   },
   {
@@ -71,11 +72,13 @@ export const selectComponents = [
       tag: 'el-select',
       tagIcon: 'select',
     },
-    __slots__: {
-      options: [
+    __children__: [
         { label: '选项1', value: 1 },
         { label: '选项2', value: 2 },
-      ]
+    ],
+    __props__: {
+      modelValue: 1,
+      onChange: (val) => {console.log(val, 'val')}
     }
   }
 ]

@@ -3,20 +3,23 @@
 // import { RouterLink, RouterView } from "vue-router";
 import { reactive, ref } from 'vue';
 import {inputComponents, selectComponents} from './utils/config'
+import render from './components/render/render.js'
+// import leftContainer from './views/leftContainer.vue'
+// console.log(leftContainer)
 let comList= reactive([
   {label: '输入型组件', comArr: inputComponents}, 
   {label: '选择型组件', comArr: selectComponents}
 ])
+let comConfList= reactive([])
 let trueComList= reactive([])
-const textContent= ref('999')
 function pullCom(evt){
   console.log(evt, 'pullCom')
-  trueComList.push(evt.moved.element)
+  comConfList.push(evt.moved.element)
 }
 function putCom(evt){
-  console.log(evt, 'putCom', trueComList)
-  let time= Date.now()
-  console.log(time, 'time');
+  console.log(evt, 'putCom', comConfList)
+  // trueComList= render(comConfList)
+  // console.log(trueComList)
 }
 </script>
 
@@ -38,15 +41,15 @@ function putCom(evt){
     .header 展示区
     .middleContainer 
       draggable.dragList(
-        :list='trueComList',
+        :list='comConfList',
         group='comConfig',
         itemKey='__config__.label',
         @change='putCom'
       )
         template(#item='{ element, index }')
-          div {{ element.__config__.label }}
+          component(:is='render(element)')
   .right
-    .header 右面板 {{ textContent }}
+    .header 右面板
 </template>
 
 <style scoped>
