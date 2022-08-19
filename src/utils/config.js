@@ -1,11 +1,16 @@
+/*
+ * @Author: yang.rui 2197192973@qq.com
+ * @Date: 2022-08-12 17:48:25
+ * @LastEditors: yang.rui 2197192973@qq.com
+ * @LastEditTime: 2022-08-19 14:18:00
+ * @FilePath: \formGenerator\src\utils\config.js
+ * @Description: 
+ */
 import { ElInput } from 'element-plus'
 
 const baseFieId = () => ({
   labelWidth: null,
-  showLabel: true,
   span: 24,
-  required: true,
-  defaultValue: undefined,
   layout: 'colFormItem',
   regList: [] // 正则校验规则
 })
@@ -18,6 +23,7 @@ export const inputComponents = [
       label: '单行文本',
       changeTag: true,
       tag: 'el-input',
+      prop: 'modelValue',
       component: ElInput
     },
     __slot__: {
@@ -28,7 +34,6 @@ export const inputComponents = [
       type: 'text',
       modelValue: '',
       maxLength: null,
-      minLength: null,
       'show-word-limit': false,
       placeholder: '单行文本',
       clearable: false,
@@ -37,7 +42,7 @@ export const inputComponents = [
       'perfix-icon': '',
       'suffix-icon': '',
       readonly: false,
-      onInput: (evt) => {__props__.modelValue = evt; console.log(evt, 'evt')}
+      onInput: null
     }
   },
   {
